@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBill Invoice Maker</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧾</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header no-print">
+        <h1>QuickBill</h1>
+        <p>Dynamic Invoice &amp; Receipt Maker</p>
+    </header>
+
+    <main class="layout">
+        <!-- Left column: input controls (hidden when printing) -->
+        <section class="panel input-form no-print" aria-label="Invoice editor">
+            <h2>Customer Details</h2>
+            <div class="field">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" placeholder="e.g. Priya Sharma">
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label for="invoice-date">Invoice Date</label>
+                    <input type="date" id="invoice-date">
+                </div>
+                <div class="field">
+                    <label for="invoice-number">Invoice #</label>
+                    <input type="text" id="invoice-number">
+                </div>
+            </div>
+
+            <h2>Add Item</h2>
+            <form id="item-form" novalidate>
+                <div class="field">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" placeholder="e.g. Website design">
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="item-qty">Quantity</label>
+                        <input type="number" id="item-qty" min="1" step="1" value="1">
+                    </div>
+                    <div class="field">
+                        <label for="item-price">Unit Price (₹)</label>
+                        <input type="number" id="item-price" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+                <p id="form-error" class="form-error" role="alert"></p>
+                <button type="submit" class="btn btn-primary">+ Add Item</button>
+            </form>
+        </section>
+
+        <!-- Right column: the invoice itself (this is what gets printed) -->
+        <section class="panel invoice-card" aria-label="Invoice preview">
+            <div class="invoice-top">
+                <div>
+                    <h2 class="invoice-title">INVOICE</h2>
+                    <p class="muted">QuickBill Services</p>
+                </div>
+                <div class="invoice-meta">
+                    <p><span class="muted">Invoice #</span> <strong id="preview-number">—</strong></p>
+                    <p><span class="muted">Date</span> <strong id="preview-date">—</strong></p>
+                </div>
+            </div>
+
+            <div class="bill-to">
+                <span class="muted">Bill To</span>
+                <p id="preview-customer">—</p>
+            </div>
+
+            <div class="table-wrap">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th class="num">Qty</th>
+                            <th class="num">Unit Price</th>
+                            <th class="num">Line Total</th>
+                            <th class="delete-col"><span class="sr-only">Delete</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-body"></tbody>
+                </table>
+                <p id="empty-state" class="empty-state">No items yet. Add one using the form.</p>
+            </div>
+
+            <div class="totals">
+                <div class="totals-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0.00</span>
+                </div>
+                <div class="totals-row">
+                    <span>GST (18%)</span>
+                    <span id="tax">₹0.00</span>
+                </div>
+                <div class="totals-row grand">
+                    <span>Grand Total</span>
+                    <span id="grand-total" class="currency-badge">₹0.00</span>
+                </div>
+            </div>
+
+            <div class="action-btns">
+                <button type="button" id="clear-btn" class="btn btn-outline">Clear All</button>
+                <button type="button" id="print-btn" class="btn btn-primary">Print Invoice</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

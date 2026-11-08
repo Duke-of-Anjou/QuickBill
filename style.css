@@ -1,0 +1,369 @@
+/* ---------- Design tokens ---------- */
+:root {
+    --primary: #188038;
+    --primary-dark: #137333;
+    --accent: #1a73e8;
+    --bg: #f1f3f4;
+    --surface: #ffffff;
+    --text: #202124;
+    --text-muted: #5f6368;
+    --border: #dadce0;
+    --stripe: #f8f9fa;
+    --danger: #d93025;
+    --danger-bg: #fce8e6;
+    --radius: 16px;
+    --shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px;
+}
+
+.app-header {
+    max-width: 1100px;
+    margin: 0 auto 20px;
+}
+
+.app-header h1 {
+    font-size: 1.75rem;
+    color: var(--primary);
+}
+
+.app-header p,
+.muted {
+    color: var(--text-muted);
+}
+
+/* ---------- Dual-column dashboard ---------- */
+.layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+.panel h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.input-form h2:not(:first-child) {
+    margin-top: 24px;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}
+
+label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+input {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    min-height: 1.2em;
+    margin-bottom: 8px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    border: none;
+    border-radius: 24px;
+    padding: 11px 22px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    background: var(--stripe);
+}
+
+#item-form .btn {
+    width: 100%;
+}
+
+/* ---------- Invoice card ---------- */
+.invoice-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.invoice-title {
+    font-size: 1.6rem !important;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 2px !important;
+}
+
+.invoice-meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bill-to {
+    margin: 16px 0;
+}
+
+.bill-to p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* ---------- Items table ---------- */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th {
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.items-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Zebra striping */
+.items-table tbody tr:nth-child(even) {
+    background: var(--stripe);
+}
+
+.num {
+    text-align: right !important;
+    white-space: nowrap;
+}
+
+.delete-col {
+    width: 48px;
+    text-align: center;
+}
+
+.delete-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Distinct red hover on trash buttons */
+.delete-btn:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 24px 0;
+    font-size: 0.9rem;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+/* ---------- Totals ---------- */
+.totals {
+    margin-left: auto;
+    margin-top: 20px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-variant-numeric: tabular-nums;
+}
+
+.totals-row.grand {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    align-items: center;
+}
+
+.currency-badge {
+    background: #e6f4ea;
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 16px;
+}
+
+.action-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .panel {
+        padding: 18px;
+    }
+
+    .field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .invoice-meta {
+        text-align: left;
+    }
+
+    .action-btns .btn {
+        flex: 1;
+    }
+}
+
+/* ---------- Print stylesheet: strips UI controls for a clean A4 invoice ---------- */
+@media print {
+    @page {
+        size: A4;
+        margin: 16mm;
+    }
+
+    body {
+        background: #fff !important;
+        color: #000;
+        padding: 0;
+    }
+
+    .no-print,
+    .input-form,
+    .action-btns,
+    .delete-col,
+    .empty-state {
+        display: none !important;
+    }
+
+    .layout {
+        display: block;
+        max-width: none;
+    }
+
+    .invoice-card {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        padding: 0;
+    }
+
+    .items-table tbody tr:nth-child(even) {
+        background: #f3f3f3;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
