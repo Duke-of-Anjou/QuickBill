@@ -4,7 +4,7 @@ A dynamic invoice and receipt generator. Enter customer details, add line items,
 
 Built with plain HTML, CSS and JavaScript: no frameworks, libraries or CDNs.
 
-**Live demo:** _add your Vercel link here_
+**Live demo:** _quickbill-eosin.vercel.app_
 
 ## Features
 
